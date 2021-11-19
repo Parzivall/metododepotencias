@@ -1,19 +1,30 @@
 import numpy as np
 
-def power_iteration(A, num_simulations: int):
-    # Elegimos un vector aleatorio
-    # Es Ortogonal
-    b_k = np.random.rand(A.shape[1])
+def normalize(x):
+    fac = abs(x).max() # Saca el valor abosluto máximo del Vector Columna 
+                        #valor propio dominante, autovalor
+    print(' fac ', fac)
+    x_n = x /x.max() # se multiplica por la inversa del auntovalor dominante
+                       # x.max()
+    print(x_n, " xn")
+    return fac, x_n
 
-    for _ in range(num_simulations):
-        b_k1 = np.dot(A, b_k)
+x = np.array([1,1,1])
+#x= np.random.rand(3)
+a = np.array(G)
+print('Eigenvalue:', x)
+print('Eigenvector:', a)
 
-        # Calcula la norma
-        b_k1_norm = np.linalg.norm(b_k1)
-
-        # re normalize the vector
-        b_k = b_k1 / b_k1_norm
-
-    return b_k
-
-power_iteration(np.array([[0.5, 0.5], [0.2, 0.8]]), 10)
+margen=0.0000000000000000000001
+i=0
+#for i in range(20):
+while(true):
+    x = np.dot(a, x)
+    print(i, ' iesima= ', x)
+    i=i+1
+    lambda_backup=lambda_1
+    lambda_1, x = normalize(x)
+    if(abs(lambda_backup-lambda_1)<margen):
+        break
+print('Eigenvalue:', lambda_1)
+print('Eigenvector:', x)
